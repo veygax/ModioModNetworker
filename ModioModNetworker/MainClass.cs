@@ -25,7 +25,6 @@ using ModIoModNetworker.Ui;
 using Newtonsoft.Json;
 using Il2CppSLZ.Marrow.SceneStreaming;
 using Il2CppSLZ.Marrow.Warehouse;
-using Il2CppSLZ.Rig;
 using UnityEngine;
 using File = System.IO.File;
 using ZipFile = System.IO.Compression.ZipFile;
@@ -115,10 +114,10 @@ namespace ModioModNetworker
 
         public override void OnInitializeMelon()
         {
-            
+
 
             melonPreferencesCategory = MelonPreferences.CreateCategory("ModioModNetworker");
-            melonPreferencesCategory.SetFilePath(MelonUtils.UserDataDirectory+"/ModioModNetworker.cfg");
+            melonPreferencesCategory.SetFilePath(MelonUtils.UserDataDirectory + "/ModioModNetworker.cfg");
             modsDirectory =
                 melonPreferencesCategory.CreateEntry<string>("ModDirectoryPath",
                     Application.persistentDataPath + "/Mods");
@@ -126,11 +125,12 @@ namespace ModioModNetworker
             autoDownloadSpawnablesConfig = melonPreferencesCategory.CreateEntry<bool>("AutoDownloadSpawnables", true);
             autoDownloadLevelsConfig = melonPreferencesCategory.CreateEntry<bool>("AutoDownloadLevels", true);
             maxLevelAutoDownloadGbConfig = melonPreferencesCategory.CreateEntry<float>("MaxLevelAutoDownloadGb", 1f);
-            tempLobbyModsConfig = melonPreferencesCategory.CreateEntry<bool>("TemporaryLobbyMods", false, null, "If set to true, lobby mods like (avatars/spawnables/levels) that got auto downloaded will be deleted when you leave the lobby.");
+            tempLobbyModsConfig = melonPreferencesCategory.CreateEntry<bool>("TemporaryLobbyMods", false, null,
+                "If set to true, lobby mods like (avatars/spawnables/levels) that got auto downloaded will be deleted when you leave the lobby.");
             maxAutoDownloadMbConfig = melonPreferencesCategory.CreateEntry<float>("MaxAutoDownloadMb", 500f);
             downloadMatureContentConfig = melonPreferencesCategory.CreateEntry<bool>("DownloadMatureContent", false);
             overrideFusionDLConfig = melonPreferencesCategory.CreateEntry<bool>("OverrideFusionDL", true);
-            
+
             maxAutoDownloadMb = maxAutoDownloadMbConfig.Value;
             autoDownloadAvatars = autoDownloadAvatarsConfig.Value;
             downloadMatureContent = downloadMatureContentConfig.Value;
@@ -140,35 +140,38 @@ namespace ModioModNetworker
             levelMaxGb = maxLevelAutoDownloadGbConfig.Value;
             useRepo = false;
             overrideFusionDL = overrideFusionDLConfig.Value;
-            
+
             ModFileManager.MOD_FOLDER_PATH = modsDirectory.Value;
 
             SpotlightOverride.LoadFromRegularURL();
-            
+
 
             AssetBundle uiAssets;
             if (!HelperMethods.IsAndroid())
             {
-                uiAssets = EmbeddedAssetBundle.LoadFromAssembly(Assembly.GetExecutingAssembly(), "ModioModNetworker.Resources.networkermenu.networker");
+                uiAssets = EmbeddedAssetBundle.LoadFromAssembly(Assembly.GetExecutingAssembly(),
+                    "ModioModNetworker.Resources.networkermenu.networker");
             }
             else
             {
-                uiAssets = EmbeddedAssetBundle.LoadFromAssembly(Assembly.GetExecutingAssembly(), "ModioModNetworker.Resources.networkermenu.android.networker");
+                uiAssets = EmbeddedAssetBundle.LoadFromAssembly(Assembly.GetExecutingAssembly(),
+                    "ModioModNetworker.Resources.networkermenu.android.networker");
             }
-            
+
             NetworkerAssets.LoadAssetsUI(uiAssets);
 
             PrepareModFiles();
             string auth = ReadAuthKey();
             blacklistedModIoIds = ReadBlacklist();
-            MelonLogger.Msg("Loaded blacklist with "+blacklistedModIoIds.Count+" entries.");
-           
+            MelonLogger.Msg("Loaded blacklist with " + blacklistedModIoIds.Count + " entries.");
+
 
 
             ModIOSettings.LoadToken(OnLoadToken);
 
-                
-            void OnLoadToken(string loadedToken) {
+
+            void OnLoadToken(string loadedToken)
+            {
 
                 ModFileManager.OAUTH_KEY = loadedToken;
 
@@ -182,8 +185,8 @@ namespace ModioModNetworker
                 ModFileManager.QueueTrending(0);
                 MelonLogger.Msg("Registered on mod.io with auth key!");
             }
-            
-            
+
+
 
             MelonLogger.Msg("Loading internal module...");
             ModuleHandler.LoadModule(Assembly.GetExecutingAssembly());
@@ -197,11 +200,8 @@ namespace ModioModNetworker
 
             ModFileManager.QueueTrending(0);
             ModFileManager.QueueTrending(0);
-            
-            
- 
 
-        private void OnLobbyCategoryMade(Page category, INetworkLobby lobby)
+        }
 
         private void OnLobbyCategoryMade(Page category, INetworkLobby lobby)
         {

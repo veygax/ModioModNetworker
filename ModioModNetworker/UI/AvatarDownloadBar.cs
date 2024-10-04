@@ -3,7 +3,6 @@ using LabFusion.Entities;
 using LabFusion.Extensions;
 using LabFusion.Representation;
 using ModioModNetworker.Utilities;
-using Il2CppSLZ.Rig;
 using Il2CppTMPro;
 using UnityEngine;
 using LabFusion.Player;
