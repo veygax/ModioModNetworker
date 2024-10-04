@@ -6,9 +6,9 @@
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
-
 using ModioModNetworkerUpdater;
-using MelonLoader;
+
+
 
 [assembly: AssemblyTitle(ModioModNetworkerUpdaterPlugin.Name)]
 [assembly: AssemblyDescription("")]
@@ -23,6 +23,3 @@ using MelonLoader;
 [assembly: AssemblyVersion("1.0.0")]
 [assembly: AssemblyFileVersion("1.0.0")]
 [assembly: NeutralResourcesLanguage("en")]
-[assembly: MelonInfo(typeof(ModioModNetworkerUpdaterPlugin), ModioModNetworkerUpdaterPlugin.Name, "1.0.0", ModioModNetworkerUpdaterPlugin.Author, null)]
-
-[assembly: MelonGame("Stress Level Zero", "BONELAB")]

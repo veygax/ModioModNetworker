@@ -38,6 +38,12 @@ using BoneLib.BoneMenu;
 using LabFusion.Marrow;
 using Il2CppSLZ.Marrow.Forklift;
 using LabFusion.Downloading.ModIO;
+using MelonLoader;
+using ModioModNetworkerUpdater;
+
+[assembly: MelonInfo(typeof(ModioModNetworkerUpdaterPlugin), ModioModNetworkerUpdaterPlugin.Name, "1.0.0", ModioModNetworkerUpdaterPlugin.Author, null)]
+
+[assembly: MelonGame("Stress Level Zero", "BONELAB")]
 
 namespace ModioModNetworker
 {

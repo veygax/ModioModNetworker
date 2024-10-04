@@ -105,7 +105,7 @@ namespace ModioModNetworker.Queue
 
         private static void Handle(SceneLoadData data)
         {
-            FusionSceneManager.SetTargetScene(data.levelBarcode);
+            FusionSceneManager.SetTargetScene(data.levelBarcode, data.loadBarcode);
         }
         
         

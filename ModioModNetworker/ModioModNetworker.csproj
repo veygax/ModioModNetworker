@@ -86,6 +86,10 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ModioModNetworkerUpdater\ModioModNetworkerUpdater.csproj" />
+  </ItemGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="copy &quot;$(TargetPath)&quot; &quot;$(BONELAB_DIR)\Mods\$(TargetFileName)&quot;" />
   </Target>
